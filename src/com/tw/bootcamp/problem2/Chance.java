@@ -3,15 +3,12 @@ package com.tw.bootcamp.problem2;
 import java.util.Objects;
 
 public class Chance {
-
-    private static final int MAX_PROBABILITY = 1;
     private final Double chance;
 
 
     public Chance(Double chance) {
         this.chance = chance;
     }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

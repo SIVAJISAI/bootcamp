@@ -8,38 +8,31 @@ public class chanceTest {
     @Test
     void shouldRepresentTheChanceOfGettingTail() {
         Chance chanceOfGettingTail  = new Chance(0.5);
-        Chance chance = new Chance(0.5);
-        assertEquals(chance,chanceOfGettingTail);
+        assertEquals(new Chance(0.5),chanceOfGettingTail);
     }
     @Test
     void shouldRepresentChanceOfNotGettingTail(){
         Chance chanceOfGettingTail  = new Chance(0.5);
-        Chance chanceOfNotGettingTail = new Chance(0.5);
-        assertEquals(chanceOfNotGettingTail,chanceOfGettingTail.not());
+        assertEquals( new Chance(0.5),chanceOfGettingTail.not());
     }
 
     @Test
     void shouldRepresentChanceAtLeastOneTail(){
         Chance chanceOfGettingTail1 = new Chance(0.5);
-        Chance chanceOfGettingTail2 = new Chance(0.5);
-        Chance chanceOfGettingAtleastOneTail = chanceOfGettingTail1.union(chanceOfGettingTail2);
-        Chance expectedChance = new Chance(0.75);
-        assertEquals(expectedChance,chanceOfGettingAtleastOneTail);
+        Chance chanceOfGettingAtleastOneTail = chanceOfGettingTail1.union(new Chance(0.5));
+        assertEquals( new Chance(0.75),chanceOfGettingAtleastOneTail);
     }
 
     @Test
     void shouldRepresentChanceOfGettingTailsOnBoth(){
         Chance chanceOfGettingTail1 = new Chance(0.5);
-        Chance chanceOfGettingTail2 = new Chance(0.5);
-        Chance chanceOfGettingBothTails = chanceOfGettingTail1.and(chanceOfGettingTail2);
-        Chance expectedChance = new Chance(0.25);
-        assertEquals(expectedChance,chanceOfGettingBothTails);
+        Chance chanceOfGettingBothTails = chanceOfGettingTail1.and(new Chance(0.5));
+        assertEquals(new Chance(0.25),chanceOfGettingBothTails);
     }
 
     @Test
     void shouldRepresentTheChanceOfGettingThreeOnDice(){
         Chance chanceOfGettingThree  = new Chance(0.166);
-        Chance chance = new Chance(0.166);
-        assertEquals(chance,chanceOfGettingThree);
+        assertEquals(new Chance(0.166),chanceOfGettingThree);
     }
 }
