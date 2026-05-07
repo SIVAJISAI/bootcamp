@@ -6,9 +6,15 @@ public class Chance {
     private final Double chance;
 
 
-    public Chance(Double chance) {
+    private Chance(Double chance) {
         this.chance = chance;
     }
+
+    public static Chance create(Double chance) throws IllegalArgumentException {
+        if( chance < 0 || chance >1) throw new IllegalArgumentException();
+        return new Chance(chance);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -23,7 +29,7 @@ public class Chance {
 
 
     public Chance not() {
-        return new Chance(1 - chance);
+        return create(1 - chance);
     }
 
     public Chance union(Chance c) {
@@ -31,6 +37,6 @@ public class Chance {
     }
 
     public Chance and(Chance c) {
-        return  new Chance(c.chance * chance);
+        return create(c.chance * chance);
     }
 }

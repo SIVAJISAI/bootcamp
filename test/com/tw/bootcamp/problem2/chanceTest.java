@@ -3,36 +3,43 @@ package com.tw.bootcamp.problem2;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class chanceTest {
     @Test
     void shouldRepresentTheChanceOfGettingTail() {
-        Chance chanceOfGettingTail  = new Chance(0.5);
-        assertEquals(new Chance(0.5),chanceOfGettingTail);
+        Chance chanceOfGettingTail  = Chance.create(0.5);
+        assertEquals(Chance.create(0.5),chanceOfGettingTail);
     }
     @Test
     void shouldRepresentChanceOfNotGettingTail(){
-        Chance chanceOfGettingTail  = new Chance(0.5);
-        assertEquals( new Chance(0.5),chanceOfGettingTail.not());
+        Chance chanceOfGettingTail  = Chance.create(0.5);
+        assertEquals(Chance.create(0.5),chanceOfGettingTail.not());
     }
 
     @Test
     void shouldRepresentChanceAtLeastOneTail(){
-        Chance chanceOfGettingTail1 = new Chance(0.5);
-        Chance chanceOfGettingAtleastOneTail = chanceOfGettingTail1.union(new Chance(0.5));
-        assertEquals( new Chance(0.75),chanceOfGettingAtleastOneTail);
+        Chance chanceOfGettingTail1 = Chance.create(0.5);
+        Chance chanceOfGettingAtleastOneTail = chanceOfGettingTail1.union(Chance.create(0.5));
+        assertEquals(Chance.create(0.75),chanceOfGettingAtleastOneTail);
     }
 
     @Test
     void shouldRepresentChanceOfGettingTailsOnBoth(){
-        Chance chanceOfGettingTail1 = new Chance(0.5);
-        Chance chanceOfGettingBothTails = chanceOfGettingTail1.and(new Chance(0.5));
-        assertEquals(new Chance(0.25),chanceOfGettingBothTails);
+        Chance chanceOfGettingTail1 = Chance.create(0.5);
+        Chance chanceOfGettingBothTails = chanceOfGettingTail1.and(Chance.create(0.5));
+        assertEquals(Chance.create(0.25),chanceOfGettingBothTails);
     }
 
     @Test
     void shouldRepresentTheChanceOfGettingThreeOnDice(){
-        Chance chanceOfGettingThree  = new Chance(0.166);
-        assertEquals(new Chance(0.166),chanceOfGettingThree);
+        Chance chanceOfGettingThree  = Chance.create(0.166);
+        assertEquals(Chance.create(0.166),chanceOfGettingThree);
+    }
+
+    @Test
+    void ShouldThrowIfTheChanceIsNotValid(){
+        assertThrows(IllegalArgumentException.class,()-> Chance.create(-0.55));
+        assertThrows(IllegalArgumentException.class,()-> Chance.create(2.55));
     }
 }
