@@ -2,7 +2,7 @@ package com.tw.bootcamp.problem1;
 
 import java.util.Objects;
 
-public class Rectangle {
+public class Rectangle implements Shape {
     private final int length;
     private final int breadth;
 
@@ -23,10 +23,12 @@ public class Rectangle {
         this.breadth = breadth;
     }
 
+    @Override
     public int calculateArea() {
         return length * breadth;
     }
 
+    @Override
     public int calculatePerimeter() {
         return 2 * (length + breadth);
     }
