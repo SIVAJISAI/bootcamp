@@ -6,12 +6,15 @@ public class Rectangle implements Shape {
     private final int length;
     private final int breadth;
 
+
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Rectangle rectangle = (Rectangle) o;
         return length == rectangle.length && breadth == rectangle.breadth;
     }
+
 
     @Override
     public int hashCode() {
