@@ -27,4 +27,19 @@ public class chanceTest {
         assertEquals(expectedChance,chanceOfGettingAtleastOneTail);
     }
 
+    @Test
+    void shouldRepresentChanceOfGettingTailsOnBoth(){
+        Chance chanceOfGettingTail1 = new Chance(0.5);
+        Chance chanceOfGettingTail2 = new Chance(0.5);
+        Chance chanceOfGettingBothTails = chanceOfGettingTail1.and(chanceOfGettingTail2);
+        Chance expectedChance = new Chance(0.25);
+        assertEquals(expectedChance,chanceOfGettingBothTails);
+    }
+
+    @Test
+    void shouldRepresentTheChanceOfGettingThreeOnDice(){
+        Chance chanceOfGettingThree  = new Chance(0.166);
+        Chance chance = new Chance(0.166);
+        assertEquals(chance,chanceOfGettingThree);
+    }
 }

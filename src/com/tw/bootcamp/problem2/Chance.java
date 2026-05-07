@@ -30,6 +30,10 @@ public class Chance {
     }
 
     public Chance union(Chance c) {
-     return  new Chance((c.chance + chance) - (c.chance * chance));
+     return  and(c).not();
+    }
+
+    public Chance and(Chance c) {
+        return  new Chance(c.chance * chance);
     }
 }
