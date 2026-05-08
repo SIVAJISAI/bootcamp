@@ -5,12 +5,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class chanceTest {
+public class ChanceTest {
     @Test
     void shouldRepresentTheChanceOfGettingTail() {
         Chance chanceOfGettingTail  = Chance.create(0.5);
         assertEquals(Chance.create(0.5),chanceOfGettingTail);
     }
+
     @Test
     void shouldRepresentChanceOfNotGettingTail(){
         Chance chanceOfGettingTail  = Chance.create(0.5);
@@ -20,8 +21,8 @@ public class chanceTest {
     @Test
     void shouldRepresentChanceAtLeastOneTail(){
         Chance chanceOfGettingTail1 = Chance.create(0.5);
-        Chance chanceOfGettingAtleastOneTail = chanceOfGettingTail1.union(Chance.create(0.5));
-        assertEquals(Chance.create(0.75),chanceOfGettingAtleastOneTail);
+        Chance chanceOfGettingAtLeastOneTail = chanceOfGettingTail1.union(Chance.create(0.5));
+        assertEquals(Chance.create(0.75),chanceOfGettingAtLeastOneTail);
     }
 
     @Test
