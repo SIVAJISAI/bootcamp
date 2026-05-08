@@ -1,7 +1,5 @@
 package com.tw.bootcamp.problem4;
 
-import java.util.Objects;
-
 public class ParkingLot {
 
     private int emptySpaces;
@@ -14,7 +12,7 @@ public class ParkingLot {
 
     public boolean park() {
         if(isFull()){
-            return false;
+            throw  new ParkingIsFullException();
         }
         emptySpaces = emptySpaces - 1;
         return  true;

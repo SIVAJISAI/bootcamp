@@ -1,5 +1,6 @@
 package problem4;
 
+import com.tw.bootcamp.problem4.ParkingIsFullException;
 import com.tw.bootcamp.problem4.ParkingLot;
 import org.junit.jupiter.api.Test;
 
@@ -15,10 +16,9 @@ public class ParkingLotTest {
     }
 
     @Test
-    void shouldReturnFalseIfParkingWasUnsuccessful() {
+    void shouldThrowIfParkingACarWhenParkingLotIsFull() {
         ParkingLot parkingLot = new ParkingLot(0);
-        assertFalse(parkingLot.park());
-
+        assertThrows(ParkingIsFullException.class, parkingLot::park);
     }
 
     @Test
