@@ -3,24 +3,34 @@ package problem4;
 import com.tw.bootcamp.problem4.ParkingLot;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
 
-    @Test
-    void twoParkingLotWithSimilarVacantSpacesShouldBeEqual() {
 
+    @Test
+    void shouldReturnTrueIfParkedSuccessfully(){
         ParkingLot parkingLot = new ParkingLot(10);
-        ParkingLot parkingLot1 = new ParkingLot(10);
-        assertEquals(parkingLot1,parkingLot);
+        assertTrue(parkingLot.park());
     }
 
     @Test
-    void parkingCarShouldReduceTheNumberOfRemainingSpaces(){
-        ParkingLot parkingLot = new ParkingLot(10);
+    void shouldReturnFalseIfParkingWasUnsuccessful() {
+        ParkingLot parkingLot = new ParkingLot(0);
+        assertFalse(parkingLot.park());
+
+    }
+
+    @Test
+    void shouldReturnTrueIfParkingLotIsFull() {
+        ParkingLot parkingLot = new ParkingLot(1);
         parkingLot.park();
-        ParkingLot parkingLot1 = new ParkingLot(9);
-        assertEquals(parkingLot1,parkingLot);
+        assertTrue(parkingLot.isFull());
     }
-    
+
+    @Test
+    void shouldReturnFalseIfParkingIsNotFull() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        assertFalse(parkingLot.isFull());
+    }
 }

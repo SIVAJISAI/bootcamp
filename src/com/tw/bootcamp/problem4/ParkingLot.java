@@ -10,20 +10,17 @@ public class ParkingLot {
         this.emptySpaces = emptySpaces;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        ParkingLot that = (ParkingLot) o;
-        return emptySpaces == that.emptySpaces;
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(emptySpaces);
-    }
 
-    public void park() {
+    public boolean park() {
+        if(isFull()){
+            return false;
+        }
         emptySpaces = emptySpaces - 1;
+        return  true;
     }
 
+    public boolean isFull() {
+        return  emptySpaces == 0;
+    }
 }
