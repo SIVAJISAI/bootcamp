@@ -1,9 +1,9 @@
 package com.tw.bootcamp.problem3;
 
-public enum TemperatureUnit {
+public enum TemperatureUnit implements  Unit {
     F,
     C;
-
+    @Override
     public double convertToBase(double value){
         return  switch (this){
             case F -> value;

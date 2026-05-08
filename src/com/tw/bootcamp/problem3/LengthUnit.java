@@ -1,12 +1,13 @@
 package com.tw.bootcamp.problem3;
 
-public enum LengthUnit {
+public enum LengthUnit implements Unit {
     In,
     Ft,
     Cm,
     Mm;
 
-     Double convertToBase(double value){
+     @Override
+     public double convertToBase(double value){
         return switch (this){
             case In -> (value);
             case Ft -> (value * 12 );
