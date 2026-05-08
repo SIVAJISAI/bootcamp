@@ -11,6 +11,23 @@ public class Length {
         this.value = value;
     }
 
+    public static Length createInInches(double value) {
+        if(value < 0){
+            throw new negativeLengthException(value);
+        }
+        return new Length(value);
+    }
+
+    public static Length createInCm(double value) {
+        double valueInInches = value / CM_FACTOR;
+        return createInInches(valueInInches);
+    }
+
+    public static Length createInFt(double value) {
+        double valueInInches = value * INCH_FACTOR;
+        return createInInches(valueInInches);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -23,19 +40,11 @@ public class Length {
         return Objects.hashCode(value);
     }
 
-    public static Length createInInches(double value) {
-        return new Length(value);
+    public boolean isGreaterThan(Length l) {
+        return this.value > l.value;
     }
 
-    public static  Length createInCm(double value){
-        double valueInInches = value / CM_FACTOR;
-        return  createInInches(valueInInches);
+    public boolean isLessThan(Length l) {
+        return !isGreaterThan(l);
     }
-
-    public static  Length createInFt(double value){
-        double valueInInches = value * INCH_FACTOR;
-        return  createInInches(valueInInches);
-    }
-
-
 }
