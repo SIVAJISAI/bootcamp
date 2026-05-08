@@ -3,36 +3,26 @@ package com.tw.bootcamp.problem3;
 import java.util.Objects;
 
 public class Length {
-    private static final double CmToInch_FACTOR = 1/2.5;
-    private static final int FtToINCH_FACTOR = 12;
     private final double value;
+    private final LengthUnit unit;
 
-    private Length(double value) {
+    private Length(double value, LengthUnit unit) {
         this.value = value;
+        this.unit = unit;
     }
 
-    public static Length createInInches(double value) {
-        if(value < 0){
-            throw new negativeLengthException(value);
+    public static Length create(double value, LengthUnit unit) {
+        if (value < 0) {
+            throw new negativeValueException(value);
         }
-        return new Length(value);
-    }
-
-    public static Length createInCm(double value) {
-        double valueInInches = value * CmToInch_FACTOR;
-        return createInInches(valueInInches);
-    }
-
-    public static Length createInFt(double value) {
-        double valueInInches = value * FtToINCH_FACTOR;
-        return createInInches(valueInInches);
+        return new Length(value, unit);
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Length length = (Length) o;
-        return value == length.value;
+        Length that = (Length) o;
+        return Objects.equals(unit.convertToCommonBase(value), that.unit.convertToCommonBase(that.value));
     }
 
     @Override
@@ -40,11 +30,8 @@ public class Length {
         return Objects.hashCode(value);
     }
 
-    public boolean isGreaterThan(Length l) {
-        return this.value > l.value;
-    }
-
-    public boolean isLessThan(Length l) {
-        return !isGreaterThan(l);
+    public Length add(Length other) {
+        double totalLength = unit.convertToCommonBase(value) + other.unit.convertToCommonBase(other.value);
+        return create(totalLength, LengthUnit.In);
     }
 }
