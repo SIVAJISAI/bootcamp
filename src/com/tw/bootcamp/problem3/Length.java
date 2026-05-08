@@ -3,8 +3,8 @@ package com.tw.bootcamp.problem3;
 import java.util.Objects;
 
 public class Length {
-    private static final double CM_FACTOR = 2.5;
-    private static final int INCH_FACTOR = 12;
+    private static final double CmToInch_FACTOR = 1/2.5;
+    private static final int FtToINCH_FACTOR = 12;
     private final double value;
 
     private Length(double value) {
@@ -19,12 +19,12 @@ public class Length {
     }
 
     public static Length createInCm(double value) {
-        double valueInInches = value / CM_FACTOR;
+        double valueInInches = value * CmToInch_FACTOR;
         return createInInches(valueInInches);
     }
 
     public static Length createInFt(double value) {
-        double valueInInches = value * INCH_FACTOR;
+        double valueInInches = value * FtToINCH_FACTOR;
         return createInInches(valueInInches);
     }
 
