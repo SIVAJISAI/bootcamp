@@ -6,7 +6,7 @@ public enum LengthUnit {
     Cm,
     Mm;
 
-     Double convertToCommonBase(double value){
+     Double convertToBase(double value){
         return switch (this){
             case In -> (value);
             case Ft -> (value * 12 );

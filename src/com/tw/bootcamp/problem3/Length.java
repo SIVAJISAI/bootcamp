@@ -2,7 +2,9 @@ package com.tw.bootcamp.problem3;
 
 import java.util.Objects;
 
+
 public class Length {
+    private static final double TOLERANCE = 0.01;
     private final double value;
     private final LengthUnit unit;
 
@@ -22,7 +24,7 @@ public class Length {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Length that = (Length) o;
-        return Objects.equals(unit.convertToCommonBase(value), that.unit.convertToCommonBase(that.value));
+        return Math.abs(unit.convertToBase(value) - that.unit.convertToBase(that.value)) < TOLERANCE;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class Length {
     }
 
     public Length add(Length other) {
-        double totalLength = unit.convertToCommonBase(value) + other.unit.convertToCommonBase(other.value);
+        double totalLength = unit.convertToBase(value) + other.unit.convertToBase(other.value);
         return create(totalLength, LengthUnit.In);
     }
 }
