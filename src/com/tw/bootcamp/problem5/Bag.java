@@ -7,10 +7,12 @@ import java.util.Objects;
 public class Bag {
     private final Integer size = 12;
     private Integer ballCount = 0;
+
+
     private  final Map<BallColor,Integer> BallInventory = new HashMap<>();
     public boolean addBall(BallColor color) {
-        if(atMaxCapacity()){
-            throw new BagFullException();
+        if(atMaxBagCapacity() || atMaxColorCapacity(color) ){
+            throw new MaxCapacityException();
         }
 
         Integer colorBallCount = BallInventory.getOrDefault(color,0) + 1;
@@ -19,7 +21,12 @@ public class Bag {
         return  true;
     }
 
-    private boolean atMaxCapacity() {
+    private boolean atMaxColorCapacity(BallColor color) {
+        int currentColorBallCount = BallInventory.getOrDefault(color,0);
+        return  color.isAtMaxLimit(currentColorBallCount);
+    }
+
+    private boolean atMaxBagCapacity() {
         return Objects.equals(ballCount, size);
     }
 

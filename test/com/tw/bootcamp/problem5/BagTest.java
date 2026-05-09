@@ -18,7 +18,7 @@ public class BagTest {
         for(int i = 0 ; i <= 11; i++){
             bag.addBall(BallColor.BLUE);
         }
-        assertThrows(BagFullException.class,()->bag.addBall(BallColor.BLUE));
+        assertThrows(MaxCapacityException.class,()->bag.addBall(BallColor.BLUE));
     }
 
 
@@ -28,5 +28,14 @@ public class BagTest {
         bag.addBall(BallColor.BLUE);
         bag.addBall(BallColor.BLUE);
         assertEquals(2,bag.getColoredBallCount(BallColor.BLUE));
+    }
+
+    @Test
+    void shouldNotAddMoreGreenBallIfAtMaxGreenCapacity() {
+        Bag bag = new Bag();
+        bag.addBall(BallColor.GREEN);
+        bag.addBall(BallColor.GREEN);
+        bag.addBall(BallColor.GREEN);
+        assertThrows(MaxCapacityException.class,()->bag.addBall(BallColor.GREEN));
     }
 }
