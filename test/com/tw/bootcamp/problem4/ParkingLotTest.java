@@ -1,4 +1,4 @@
-package problem4;
+package com.tw.bootcamp.problem4;
 
 import com.tw.bootcamp.problem4.ParkingIsFullException;
 import com.tw.bootcamp.problem4.ParkingLot;
