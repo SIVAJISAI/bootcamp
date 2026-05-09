@@ -30,4 +30,12 @@ public class ParkingDeck {
         }
         return parkingLot.park();
     }
+
+    public boolean isParkingLotFull(Integer parkingLotId) {
+        ParkingLot parkingLot = parkingLots.get(parkingLotId);
+        if(parkingLot == null){
+            throw  new IllegalArgumentException(parkingLotId + " not validId");
+        }
+        return parkingLot.isFull();
+    }
 }

@@ -34,7 +34,16 @@ public class ParkingDeckTest {
     void shouldBeAbleToCheckIfAParkingLotIsFullOrNot() {
         ParkingDeck parkingDeck = ParkingDeck.createParkingDeck();
         ParkingLot parkingLot = new ParkingLot(10);
+        Integer parkingLotId = parkingDeck.add(parkingLot);
+        assertFalse(parkingDeck.isParkingLotFull(parkingLotId));
 
+    }
+    @Test
+    void shouldReturnTrueIfAParkingLotIsFull() {
+        ParkingDeck parkingDeck = ParkingDeck.createParkingDeck();
+        ParkingLot parkingLot = new ParkingLot(0);
+        Integer parkingLotId = parkingDeck.add(parkingLot);
+        assertTrue(parkingDeck.isParkingLotFull(parkingLotId));
 
     }
 }
