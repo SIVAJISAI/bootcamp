@@ -5,19 +5,18 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Bag {
-    private final Integer size = 12;
+    private final Integer maxBallCount = 12;
     private final int maxGreenBallCount = 3;
     private Integer ballCount = 0;
+    private  final Map<BallColor,Integer> ballInventory = new HashMap<>();
 
-
-    private  final Map<BallColor,Integer> BallInventory = new HashMap<>();
     public boolean addBall(BallColor color) {
         if(atMaxBagCapacity() || atMaxColorCapacity(color) ){
             throw new MaxCapacityException();
         }
 
-        Integer colorBallCount = BallInventory.getOrDefault(color,0) + 1;
-        BallInventory.put(color,colorBallCount);
+        Integer colorBallCount = ballInventory.getOrDefault(color,0) + 1;
+        ballInventory.put(color,colorBallCount);
         ballCount = ballCount + 1;
         return  true;
     }
@@ -28,16 +27,16 @@ public class Bag {
             case BLUE -> false;
             case GREEN -> currentColorBallCount== maxGreenBallCount;
             case RED -> currentColorBallCount ==  (getColoredBallCount(BallColor.GREEN) * 2);
-            case YELLOW -> false;
+            case YELLOW -> (((currentColorBallCount + 1)/(ballCount + 1)) * 100) > 40;
         };
     }
 
     private boolean atMaxBagCapacity() {
-        return Objects.equals(ballCount, size);
+        return Objects.equals(ballCount, maxBallCount);
     }
 
 
     public int getColoredBallCount(BallColor color) {
-        return  BallInventory.getOrDefault(color,0);
+        return  ballInventory.getOrDefault(color,0);
     }
 }
