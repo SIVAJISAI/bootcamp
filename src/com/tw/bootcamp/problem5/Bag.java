@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Bag {
     private final Integer size = 12;
+    private final int maxGreenBallCount = 3;
     private Integer ballCount = 0;
 
 
@@ -22,8 +23,13 @@ public class Bag {
     }
 
     private boolean atMaxColorCapacity(BallColor color) {
-        int currentColorBallCount = BallInventory.getOrDefault(color,0);
-        return  color.isAtMaxLimit(currentColorBallCount);
+        int currentColorBallCount = getColoredBallCount(color);
+        return  switch (color){
+            case BLUE -> false;
+            case GREEN -> currentColorBallCount== maxGreenBallCount;
+            case RED -> currentColorBallCount ==  (getColoredBallCount(BallColor.GREEN) * 2);
+            case YELLOW -> false;
+        };
     }
 
     private boolean atMaxBagCapacity() {

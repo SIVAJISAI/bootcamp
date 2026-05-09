@@ -38,4 +38,21 @@ public class BagTest {
         bag.addBall(BallColor.GREEN);
         assertThrows(MaxCapacityException.class,()->bag.addBall(BallColor.GREEN));
     }
+
+    @Test
+    void shouldAllowTheTwoRedBallsWhenOneGreenBallIsAdded() {
+        Bag bag = new Bag();
+        bag.addBall(BallColor.GREEN);
+        bag.addBall(BallColor.RED);
+        assertTrue(bag.addBall(BallColor.RED));
+    }
+
+    @Test
+    void shouldThrowWhenAddingThreeRedBallsWhenOnlyOneGreenBallIsAdded() {
+        Bag bag = new Bag();
+        bag.addBall(BallColor.GREEN);
+        bag.addBall(BallColor.RED);
+        bag.addBall(BallColor.RED);
+        assertThrows(MaxCapacityException.class,()->bag.addBall(BallColor.RED));
+    }
 }
